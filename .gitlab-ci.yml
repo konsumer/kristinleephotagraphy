@@ -1,0 +1,17 @@
+image: node:7
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - npm install
+
+pages:
+  script:
+  - npm run build
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
