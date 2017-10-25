@@ -39,4 +39,5 @@ collections:
       - {label: "Path", name: "path", widget: "string"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "body", widget: "markdown"}
+      - {label: "Thumbnail", name: "thumbnail", widget: "image"}
       - {label: "Images", name: "images", widget: "image"}
