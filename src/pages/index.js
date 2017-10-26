@@ -7,6 +7,7 @@ class BlogIndex extends React.Component {
   render () {
     const siteTitle = this.props.data.site.siteMetadata.title
     const posts = this.props.data.allMarkdownRemark.edges
+    console.log(this.props)
 
     return (
       <div>
@@ -16,7 +17,7 @@ class BlogIndex extends React.Component {
             const title = post.node.frontmatter.title || post.node.path
             return (
               <div key={post.node.frontmatter.path}>
-                {/** <img src={require(`./${post.node.frontmatter.thumb}`)} /> **/}
+                <img src={post.node.frontmatter.image.relativePath} />
                 <h3>
                   <Link to={post.node.frontmatter.path} >
                     {title}
@@ -44,13 +45,16 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___order], order: ASC }) {
+    allMarkdownRemark(sort: {fields: [frontmatter___order], order: ASC}) {
       edges {
         node {
           frontmatter {
             path
             order
             title
+            image {
+              relativePath
+            }
           }
         }
       }
