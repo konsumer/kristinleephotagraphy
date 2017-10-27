@@ -24,10 +24,12 @@ class Template extends React.Component {
       )
     }
     return (
-      <div>
-        {header}
-        {children()}
-      </div>
+      <section>
+        <header className='site'>
+          {header}
+        </header>
+        <main className='site'>{children()}</main>
+      </section>
     )
   }
 }

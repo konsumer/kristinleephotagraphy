@@ -3,40 +3,37 @@ import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import graphql from 'graphql'
 
-class BlogIndex extends React.Component {
+import { thumbStyle } from '../utils'
+
+import './index.css'
+
+class GalleryIndex extends React.Component {
   render () {
     const siteTitle = this.props.data.site.siteMetadata.title
     const posts = this.props.data.allMarkdownRemark.edges
     console.log(this.props)
 
     return (
-      <div>
+      <div className='page GalleryIndex'>
         <Helmet title={siteTitle} />
-        {posts.map(post => {
-          if (post.node.path !== '/404/') {
-            const title = post.node.frontmatter.title || post.node.path
-            return (
-              <div key={post.node.frontmatter.path}>
-                <img src={post.node.frontmatter.image.relativePath} />
-                <h3>
-                  <Link to={post.node.frontmatter.path} >
-                    {title}
-                  </Link>
-                </h3>
-              </div>
-            )
-          }
+        {posts.filter(post => post.node.path !== '/404/').map(post => {
+          const title = post.node.frontmatter.title || post.node.path
+          return (
+            <Link to={post.node.frontmatter.path + '/'} key={post.node.frontmatter.path} className='gallery' style={thumbStyle('/' + post.node.frontmatter.image.relativePath)}>
+              <h3>{title}</h3>
+            </Link>
+          )
         })}
       </div>
     )
   }
 }
 
-BlogIndex.propTypes = {
+GalleryIndex.propTypes = {
   route: React.PropTypes.object
 }
 
-export default BlogIndex
+export default GalleryIndex
 
 export const pageQuery = graphql`
   query IndexQuery {

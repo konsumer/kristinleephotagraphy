@@ -5,6 +5,7 @@
   "dependencies": {
     "gatsby": "^1.8.12",
     "gatsby-link": "^1.6.8",
+    "gatsby-plugin-copy-files": "^1.0.1",
     "gatsby-plugin-google-analytics": "^1.0.4",
     "gatsby-plugin-manifest": "^1.0.4",
     "gatsby-plugin-offline": "^1.0.4",
@@ -12,7 +13,6 @@
     "gatsby-plugin-react-helmet": "^1.0.3",
     "gatsby-plugin-sharp": "^1.6.2",
     "gatsby-remark-copy-linked-files": "^1.5.2",
-    "gatsby-remark-images": "^1.5.4",
     "gatsby-remark-prismjs": "^1.2.1",
     "gatsby-remark-responsive-iframe": "^1.4.3",
     "gatsby-remark-smartypants": "^1.4.3",
@@ -21,14 +21,19 @@
     "gatsby-transformer-sharp": "^1.6.1",
     "lodash": "^4.15.0"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build"
   },
   "babel": {
-    "presets": ["react", "es2015", "stage-1"],
-    "plugins": ["add-module-exports"]
+    "presets": [
+      "react",
+      "es2015",
+      "stage-1"
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
   }
 }

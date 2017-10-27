@@ -1,21 +1,24 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import graphql from 'graphql'
+import { thumbStyle } from '../utils'
 
 class GalleryTemplate extends React.Component {
   render () {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
 
+    const html = post.html
+    console.log(html)
+
     return (
-      <div>
+      <div className='Gallery page'>
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
-        <h1>{post.frontmatter.title}</h1>
-        <p>
-          {post.frontmatter.date}
-        </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr />
+        <div className='gallery' key={post.frontmatter.path} style={thumbStyle('/' + post.frontmatter.image.relativePath)}>
+          <h3>{post.frontmatter.title}</h3>
+          <h4>{post.frontmatter.description}</h4>
+        </div>
+        <div className='content' dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     )
   }
@@ -36,6 +39,11 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        description
+        path
+        image {
+          relativePath
+        }
       }
     }
   }
