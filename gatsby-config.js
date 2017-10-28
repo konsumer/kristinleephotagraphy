@@ -1,14 +1,15 @@
 module.exports = {
   siteMetadata: {
-    title: 'Kristin Lee Photography',
-    author: 'Kristin Lee'
+    title: 'Kristin Lee Photography'
   },
   plugins: [
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sass',
     {
-      resolve: 'gatsby-plugin-copy-files',
+      resolve: 'gatsby-source-filesystem',
       options: {
-        source: `${__dirname}/gallery/`,
-        destination: '/'
+        path: `${__dirname}/src/pages`,
+        name: 'pages'
       }
     },
     {
@@ -16,33 +17,14 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-responsive-iframe',
+            resolve: 'gatsby-remark-images',
             options: {
-              wrapperStyle: 'margin-bottom: 1.0725rem'
+              maxWidth: 800,
+              linkImagesToOriginal: false
             }
-          },
-          'gatsby-remark-prismjs',
-          // 'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants'
+          }
         ]
       }
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/gallery`,
-        name: 'gallery'
-      }
-    },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        // trackingId: 'ADD YOUR TRACKING ID HERE',
-      }
-    },
-    'gatsby-plugin-offline',
-    'gatsby-plugin-react-helmet'
+    }
   ]
 }

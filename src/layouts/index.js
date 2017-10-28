@@ -1,43 +1,37 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import Helmet from 'react-helmet'
+import 'bulma'
+import './index.scss'
 
-class Template extends React.Component {
-  render () {
-    const { location, children } = this.props
-    const siteTitle = 'Kristin Lee Photography' // this.props.site.siteMetadata.title
-    let header
-    if (location.pathname === '/') {
-      header = (
-        <h1>
-          <Link to={'/'} >
-            {siteTitle}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3>
-          <Link to={'/'}>
-            {siteTitle}
-          </Link>
-        </h3>
-      )
-    }
-    return (
-      <section>
-        <header className='site'>
-          {header}
-        </header>
-        <main className='site'>{children()}</main>
-      </section>
-    )
-  }
+const Navbar = () => (
+  <nav className='navbar is-light'>
+    <div className='container'>
+      <div className='navbar-brand'>
+        <Link to='/' className='navbar-item'>
+          Kristin Lee Photography
+        </Link>
+      </div>
+      <div className='navbar-start'>
+        <Link className='navbar-item' to='/about'>
+          About
+        </Link>
+      </div>
+    </div>
+  </nav>
+)
+
+const TemplateWrapper = ({ children }) => (
+  <div>
+    <Helmet title='Kristin Lee Photography' />
+    <Navbar />
+    <div>{children()}</div>
+  </div>
+)
+
+TemplateWrapper.propTypes = {
+  children: PropTypes.func
 }
 
-Template.propTypes = {
-  children: React.PropTypes.func,
-  location: React.PropTypes.object,
-  route: React.PropTypes.object
-}
-
-export default Template
+export default TemplateWrapper

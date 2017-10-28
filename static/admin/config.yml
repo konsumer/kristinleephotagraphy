@@ -1,0 +1,45 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: "/static/images"
+public_folder: "/images"
+
+collections:
+  - name: "about"
+    label: "About"
+    folder: "src/pages/about"
+    create: false
+    slug: "{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about"}
+      - {label: "Path", name: "path", widget: "hidden", default: "/about"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "gallery"
+    label: "Gallery"
+    folder: "src/pages/gallery"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "gallery"}
+      - {label: "Path", name: "path", widget: "string"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "body", widget: "markdown"}
+      - {label: "Image", name: "image", widget: "relation", collection: "image", valueField: "path"}
+      - {label: "Order", name: "order", widget: "number", default: 1}
+
+  - name: "image"
+    label: "Image"
+    folder: "src/pages/images"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "image"}
+      - {label: "Path", name: "path", widget: "string"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "body", widget: "markdown"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Gallery", name: "gallery", widget: "relation", collection: "gallery", valueField: "path"}
+      - {label: "Order", name: "order", widget: "number", default: 1}

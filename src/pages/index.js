@@ -1,57 +1,49 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import Helmet from 'react-helmet'
 import graphql from 'graphql'
 
-import { thumbStyle } from '../utils'
-
-import './index.css'
-
-class GalleryIndex extends React.Component {
-  render () {
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const posts = this.props.data.allMarkdownRemark.edges
-    console.log(this.props)
-
-    return (
-      <div className='page GalleryIndex'>
-        <Helmet title={siteTitle} />
-        {posts.filter(post => post.node.path !== '/404/').map(post => {
-          const title = post.node.frontmatter.title || post.node.path
-          return (
-            <Link to={post.node.frontmatter.path + '/'} key={post.node.frontmatter.path} className='gallery' style={thumbStyle('/' + post.node.frontmatter.image.relativePath)}>
-              <h3>{title}</h3>
-            </Link>
-          )
-        })}
-      </div>
-    )
+const style = {
+  gallery: {
+    border: '1px solid #eaecee',
+    padding: '2em 4em',
+    backgroundSizing: 'cover'
   }
 }
 
-GalleryIndex.propTypes = {
-  route: React.PropTypes.object
+export default function Index ({ data }) {
+  const { edges: posts } = data.allMarkdownRemark
+  return (
+    <section className='section'>
+      <div className='container'>
+        {posts.filter(post => post.node.frontmatter.templateKey === 'gallery').map(({ node: post }) => {
+          return (
+            <div className='content' style={{...style.gallery, backgroundImage: `url(/images/${post.frontmatter.image})`}} key={post.id}>
+              <p>
+                <Link to={post.frontmatter.path}>{post.frontmatter.title}</Link>
+              </p>
+              <p>
+                {post.excerpt}
+              </p>
+            </div>
+          )
+        })}
+      </div>
+    </section>
+  )
 }
-
-export default GalleryIndex
 
 export const pageQuery = graphql`
   query IndexQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: {fields: [frontmatter___order], order: ASC}) {
+    allMarkdownRemark(sort: { order: ASC, fields: [frontmatter___order] }) {
       edges {
         node {
+          excerpt(pruneLength: 400)
+          id
           frontmatter {
-            path
-            order
             title
-            image {
-              relativePath
-            }
+            templateKey
+            path
+            image
           }
         }
       }
