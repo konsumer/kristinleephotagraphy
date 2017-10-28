@@ -2,32 +2,17 @@ import React from 'react'
 import Link from 'gatsby-link'
 import graphql from 'graphql'
 
-const style = {
-  gallery: {
-    border: '1px solid #eaecee',
-    padding: '2em 4em',
-    backgroundSizing: 'cover'
-  }
-}
-
 export default function Index ({ data }) {
   const { edges: posts } = data.allMarkdownRemark
   return (
-    <section className='section'>
-      <div className='container'>
-        {posts.filter(post => post.node.frontmatter.templateKey === 'gallery').map(({ node: post }) => {
-          return (
-            <div className='content' style={{...style.gallery, backgroundImage: `url(/images/${post.frontmatter.image})`}} key={post.id}>
-              <p>
-                <Link to={post.frontmatter.path}>{post.frontmatter.title}</Link>
-              </p>
-              <p>
-                {post.excerpt}
-              </p>
-            </div>
-          )
-        })}
-      </div>
+    <section className='gallerypage'>
+      {posts.filter(post => post.node.frontmatter.templateKey === 'gallery').map(({ node: post }) => {
+        return (
+          <Link to={post.frontmatter.path} className='gallery' style={{backgroundImage: `url(/images/${post.frontmatter.image})`}} key={post.id}>
+            {post.frontmatter.title}
+          </Link>
+        )
+      })}
     </section>
   )
 }

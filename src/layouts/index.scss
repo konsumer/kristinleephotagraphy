@@ -1,3 +1,66 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  margin: 0;
+  padding:0;
+}
+
 body {
   font-family: sans-serif;
+  color: #fff;
+  background: #000;
+}
+
+nav {
+  display:flex;
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+}
+
+nav :nth-child(1) {
+  flex: 1;
+}
+
+nav :nth-child(2) {
+  margin-right: 30px;
+}
+
+a {
+  color: #fff;
+  text-decoration:none;
+}
+
+.gallerypage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery {
+  background-size: cover;
+  background-position: 50% 50%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingallery .gallery {
+  height: 100vh;
+}
+
+.galleryheader {
+  position: absolute;
+  top:0;
+  left:0;
+  margin:auto;
+  text-align: center;
 }

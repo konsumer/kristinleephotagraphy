@@ -2,25 +2,19 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import graphql from 'graphql'
 
-const style = {
-  image: {
-    backgroundSizing: 'cover'
-  }
-}
-
 export default function Template ({ data }) {
   const { markdownRemark: post } = data
   const images = data.allMarkdownRemark.edges.map(p => p.node)
   return (
-    <section className='section'>
+    <section>
       <Helmet title={`Gallery | ${post.frontmatter.title}`} />
-      <div className='container content'>
-        <h1 className='title is-size-2 has-text-info is-bold-light'>{post.frontmatter.title}</h1>
+      <div className='galleryheader'>
+        <h1>{post.frontmatter.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
-      <div className='container content'>
+      <div className='ingallery'>
         {images.map(image => (
-          <div key={image.frontmatter.image} style={{...style.image, backgroundImage: `url(/images/${image.frontmatter.image})`}}>
+          <div className='gallery' key={image.frontmatter.image} style={{backgroundImage: `url(/images/${image.frontmatter.image})`}}>
             <h2>{image.title}</h2>
             <div dangerouslySetInnerHTML={{ __html: image.html }} />
           </div>
