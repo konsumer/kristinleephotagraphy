@@ -24,14 +24,13 @@ nav {
   left: 0;
   width: 100%;
   padding: 10px;
-}
 
-nav :nth-child(1) {
-  flex: 1;
-}
-
-nav :nth-child(2) {
-  margin-right: 30px;
+  :nth-child(1) {
+    flex: 1;
+  }
+  :nth-child(2) {
+    margin-right: 30px;
+  }
 }
 
 h1, h2, h3, h4 {
@@ -43,9 +42,12 @@ a {
   text-decoration:none;
 }
 
-h3 {
-  color: #fff;
+h2 {
   font-size: 80px;
+}
+
+h3 {
+  font-size: 50px;
 }
 
 .gallerypage {
@@ -59,21 +61,26 @@ h3 {
   background-position: 50% 50%;
   flex: 1;
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: center;
   padding: 10px;
+  flex-direction: column;
 }
 
-.ingallery .gallery {
-  height: 100vh;
-  align-content: flex-end;
-  flex-direction: column;
+.ingallery {
+  :nth-child(1) {
+    flex: 1;
+  }
+  .gallery {
+    height: 100vh;
+  }
 }
 
 .galleryheader {
   position: absolute;
-  top:0;
+  top:50px;
   left:0;
   margin:auto;
   text-align: center;
+  width: 100%;
 }

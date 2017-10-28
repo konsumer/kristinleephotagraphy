@@ -9,7 +9,8 @@ export default function Index ({ data }) {
       {posts.filter(post => post.node.frontmatter.templateKey === 'gallery').map(({ node: post }) => {
         return (
           <Link to={post.frontmatter.path} className='gallery' style={{backgroundImage: `url(/images/${post.frontmatter.image})`}} key={post.id}>
-            <h3>{post.frontmatter.title}</h3>
+            <h2>{post.frontmatter.title}</h2>
+            <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
           </Link>
         )
       })}
