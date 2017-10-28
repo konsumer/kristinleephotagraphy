@@ -22,9 +22,6 @@ module.exports = class HTML extends React.Component {
       )
     }
 
-    this.props.headComponents.push(<Script url='https://identity.netlify.com/v1/netlify-identity-widget.js' />)
-    this.props.headComponents.push(<Script url='/admin/netlifysetup.js' />)
-
     return (
       <html {...this.props.htmlAttributes}>
         <head>
@@ -45,6 +42,8 @@ module.exports = class HTML extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
           {this.props.postBodyComponents}
+          <Script url='https://identity.netlify.com/v1/netlify-identity-widget.js' />
+          <Script url='/admin/netlifysetup.js' />
         </body>
       </html>
     )
