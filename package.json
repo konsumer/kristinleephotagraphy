@@ -11,8 +11,7 @@
     "gatsby-plugin-sass": "^1.0.12",
     "gatsby-remark-images": "^1.5.18",
     "gatsby-source-filesystem": "^1.5.5",
-    "gatsby-transformer-remark": "^1.7.17",
-    "react-load-script": "0.0.6"
+    "gatsby-transformer-remark": "^1.7.17"
   },
   "scripts": {
     "build": "gatsby build",
