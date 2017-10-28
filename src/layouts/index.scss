@@ -23,7 +23,7 @@ nav {
   top:0;
   left: 0;
   width: 100%;
-  padding: 10px;
+  padding: 20px;
 
   :nth-child(1) {
     flex: 1;
@@ -83,4 +83,8 @@ h3 {
   margin:auto;
   text-align: center;
   width: 100%;
+}
+
+.about {
+  padding: 100px;
 }
