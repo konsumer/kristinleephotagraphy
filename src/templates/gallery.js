@@ -9,13 +9,13 @@ export default function Template ({ data }) {
     <section>
       <Helmet title={`Gallery | ${post.frontmatter.title}`} />
       <div className='galleryheader'>
-        <h1>{post.frontmatter.title}</h1>
+        <h3>{post.frontmatter.title}</h3>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
       <div className='ingallery'>
         {images.map(image => (
           <div className='gallery' key={image.frontmatter.image} style={{backgroundImage: `url(/images/${image.frontmatter.image})`}}>
-            <h2>{image.title}</h2>
+            <h4>{image.frontmatter.title}</h4>
             <div dangerouslySetInnerHTML={{ __html: image.html }} />
           </div>
         ))}
