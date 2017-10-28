@@ -32,7 +32,7 @@ collections:
 
   - name: "image"
     label: "Image"
-    folder: "src/pages/gallery/images"
+    folder: "src/pages/images"
     create: true
     slug: "{{slug}}"
     fields:
