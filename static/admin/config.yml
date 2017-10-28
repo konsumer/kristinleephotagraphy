@@ -38,7 +38,7 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "image"}
       - {label: "Path", name: "path", widget: "string"}
-      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Title", name: "title", widget: "string", default: "Untitled"}
       - {label: "Description", name: "body", widget: "markdown"}
       - {label: "Image", name: "image", widget: "image"}
       - {label: "Gallery", name: "gallery", widget: "relation", collection: "gallery", valueField: "path"}

@@ -15,7 +15,7 @@ export default function Template ({ data }) {
       <div className='ingallery'>
         {images.map(image => (
           <div className='gallery' key={image.frontmatter.image} style={{backgroundImage: `url(/images/${image.frontmatter.image})`}}>
-            <h4>{image.frontmatter.title}</h4>
+            { image.frontmatter.title && image.frontmatter.title !== 'Untitled' && <h4>{image.frontmatter.title}</h4> }
             <div dangerouslySetInnerHTML={{ __html: image.html }} />
           </div>
         ))}
